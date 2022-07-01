@@ -2,28 +2,17 @@ import 'package:flutter/material.dart';
 
 class NoteListModel with ChangeNotifier {
   final List<Note> _notes = [];
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _subtitleController = TextEditingController();
 
   int get count => _notes.length;
 
   List<Note> get notes => _notes;
 
-  TextEditingController get titleController => _titleController;
-
-  String get titleControllerText => _titleController.text.trim();
-
-  TextEditingController get subtitleController => _subtitleController;
-
-  String get subtitleControllerText => _subtitleController.text.trim();
-
-  void clearController() {
-    _titleController.clear();
-    _subtitleController.clear();
-  }
-
-  void addNote(String title, String subtitle) {
-    _notes.add(Note(title, subtitle));
+  void addNote(
+      String title,
+      String subtitle,
+      TextEditingController titleController,
+      TextEditingController subtitleController) {
+    _notes.add(Note(title, subtitle, titleController, subtitleController));
     notifyListeners();
   }
 
@@ -33,12 +22,23 @@ class NoteListModel with ChangeNotifier {
   }
 }
 
-class Note{
-  final String _title;
-  final String _subtitle;
+class Note {
+  String? _title;
+  String? _subtitle;
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _subtitleController = TextEditingController();
 
-  Note(this._title, this._subtitle);
+  Note(String title, String subtitle, TextEditingController titleController,
+      TextEditingController subtitleController) {
+    _title = title;
+    _subtitle = subtitle;
+    _titleController = titleController;
+    _subtitleController = subtitleController;
+  }
 
-  String get title => _title;
-  String get subtitle => _subtitle;
+  String get title => _title!;
+  String get subtitle => _subtitle!;
+
+  TextEditingController get titleController => _titleController;
+  TextEditingController get subtitleController => _subtitleController;
 }

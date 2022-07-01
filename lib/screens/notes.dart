@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_notes/models/note_list.dart';
+import 'package:my_notes/screens/note_details.dart';
 import 'package:provider/provider.dart';
 
 class NoteScreen extends StatelessWidget {
@@ -14,7 +15,9 @@ class NoteScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () => Navigator.pushNamed(context, "/addnote")
+            onPressed: () {
+              Navigator.pushNamed(context, "/addnote");
+            } 
             )
         ],
       ),
@@ -27,6 +30,12 @@ class NoteScreen extends StatelessWidget {
             icon: const Icon(Icons.delete),
             onPressed: () => note.deleteNote(index),
           ),
+          onTap: () => {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => NoteDetailScreen(note.notes[index].titleController, note.notes[index].subtitleController))
+            )
+          },
         )
         ),
     );

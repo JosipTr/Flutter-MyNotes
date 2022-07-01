@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
           "/" : (context) => const NoteScreen(),
-          "/addnote" : (context) => const NoteAddScreen()
+          "/addnote" : (context) => const NoteAddScreen(),
         },
       ),
       );
