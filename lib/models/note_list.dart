@@ -7,6 +7,8 @@ class NoteListModel with ChangeNotifier {
 
   List<Note> get notes => _notes;
 
+  Note getNoteById(id) => (id % _notes[_notes.length]);
+
   void addNote(
       String title,
       String subtitle,
@@ -20,9 +22,22 @@ class NoteListModel with ChangeNotifier {
     _notes.remove(_notes[index]);
     notifyListeners();
   }
+
+  void update(Note note,
+      String title,
+      String subtitle,
+      TextEditingController titleController,
+      TextEditingController subtitleController) {
+        note.setTitle(title);
+        note.setSubtitle(subtitle);
+        note.setTitleController(titleController);
+        note.setsubtitleController(subtitleController);
+  notifyListeners();
+  }
+
 }
 
-class Note {
+class Note with ChangeNotifier{
   String? _title;
   String? _subtitle;
   TextEditingController _titleController = TextEditingController();
@@ -39,6 +54,22 @@ class Note {
   String get title => _title!;
   String get subtitle => _subtitle!;
 
+  void setTitle(String value) {
+    _title = value;
+  }
+
+  void setSubtitle(String value) {
+    _subtitle = value;
+  }
+
   TextEditingController get titleController => _titleController;
   TextEditingController get subtitleController => _subtitleController;
+
+  void setTitleController(TextEditingController titleController) {
+    _titleController = titleController;
+  }
+
+    void setsubtitleController(TextEditingController subtitleController) {
+    _subtitleController = subtitleController;
+  }
 }

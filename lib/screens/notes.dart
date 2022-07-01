@@ -14,30 +14,30 @@ class NoteScreen extends StatelessWidget {
         title: const Text("My Notes"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.pushNamed(context, "/addnote");
-            } 
-            )
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, "/addnote");
+              })
         ],
       ),
       body: ListView.builder(
-        itemCount: note.count,
-        itemBuilder: (context, index) => ListTile(
-          title: Text(note.notes[index].title),
-          subtitle: Text(note.notes[index].subtitle, maxLines: 1),
-          trailing: IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => note.deleteNote(index),
-          ),
-          onTap: () => {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => NoteDetailScreen(note.notes[index].titleController, note.notes[index].subtitleController))
-            )
-          },
-        )
-        ),
+          itemCount: note.count,
+          itemBuilder: (context, index) => ListTile(
+                title: Text(note.notes[index].title),
+                subtitle: Text(note.notes[index].subtitle, maxLines: 1),
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => note.deleteNote(index),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            NoteDetailScreen(note.notes[index], note)),
+                  ),
+                },
+              )),
     );
   }
 }
