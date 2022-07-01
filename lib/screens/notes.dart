@@ -22,7 +22,7 @@ class NoteScreen extends StatelessWidget {
         itemCount: note.count,
         itemBuilder: (context, index) => ListTile(
           title: Text(note.notes[index].title),
-          subtitle: Text(note.notes[index].subtitle, maxLines: 1,),
+          subtitle: Text(note.notes[index].subtitle, maxLines: 1),
           trailing: IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () => note.deleteNote(index),

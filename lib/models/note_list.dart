@@ -17,6 +17,11 @@ class NoteListModel with ChangeNotifier {
 
   String get subtitleControllerText => _subtitleController.text.trim();
 
+  void clearController() {
+    _titleController.clear();
+    _subtitleController.clear();
+  }
+
   void addNote(String title, String subtitle) {
     _notes.add(Note(title, subtitle));
     notifyListeners();
