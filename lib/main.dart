@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_notes/models/note_list.dart';
+import 'package:my_notes/screens/notes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => NoteListModel())
       ],
-      child: const MaterialApp(),
+      child: const MaterialApp(
+        home: NoteScreen(),
+      ),
       );
   }
 }
